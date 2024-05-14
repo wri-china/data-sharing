@@ -15,13 +15,13 @@
 
 ## 边界数据连接
 
-七普数据整理后，我们将七普数据与省、市、县级行政边界数据进行对应链接。省级与市级七普数据可实现与行政边界数据的一一对应链接，结果存储在[China_POP_province](https://github.com/wri-china/data-sharing/7th-census/tree/main/shp_pop)与[China_POP_city](https://github.com/wri-china/data/sharing/7th-census/tree/main/shp_pop)中。
+七普数据整理后，我们将七普数据与省、市、县级行政边界数据进行对应链接。省级与市级七普数据可实现与行政边界数据的一一对应链接，结果存储在[China_POP_province](https://github.com/wri-china/data-sharing/tree/main/7th-census/shp_pop)与[China_POP_city](https://github.com/wri-china/data-sharing/tree/main/7th-census/shp_pop)中。
 
-在整合县级行政区七普数据和行政边界数据的过程中，七普统计数据涵盖了2991个县级行政区，而[China_POP_county](https://github.com/wri-china/data-sharing/7th-census/tree/main/shp_pop)的边界数据则包含了2849个县级行政边界。主要原因是七普统计数据，将经济开发区和高新技术开发区等区域，与县级行政区作为同级，独立计数统计。而县级行政区的边界没有单独划分经济开发区和高新技术开发区等区域。
+在整合县级行政区七普数据和行政边界数据的过程中，七普统计数据涵盖了2991个县级行政区，而[China_POP_county](https://github.com/wri-china/data-sharing/tree/main/7th-census/shp_pop)的边界数据则包含了2849个县级行政边界。主要原因是七普统计数据，将经济开发区和高新技术开发区等区域，与县级行政区作为同级，独立计数统计。而县级行政区的边界没有单独划分经济开发区和高新技术开发区等区域。
 
 ## 县级数据连接
 
-为了实现七普统计数据与行政边界的连接，我们特别关注了七普统计数据中的142个没有边界信息的经济开发区和高新技术开发区等。通过人工比对，将这些开发区的行政公共单位所在地与[China_POP_county](https://github.com/wri-china/data-sharing/7th-census/tree/main/shp_pop)的边界数据中的2849个县级行政区进行了对比，并使用 `Code_SHP` 作为连接属性列。其他行政边界，则直接通过名称进行比对，同样使用 `Code_SHP` 作为连接属性列。
+为了实现七普统计数据与行政边界的连接，我们特别关注了七普统计数据中的142个没有边界信息的经济开发区和高新技术开发区等。通过人工比对，将这些开发区的行政公共单位所在地与[China_POP_county](https://github.com/wri-china/data-sharing/tree/main/7th-census/shp_pop)的边界数据中的2849个县级行政区进行了对比，并使用 `Code_SHP` 作为连接属性列。其他行政边界，则直接通过名称进行比对，同样使用 `Code_SHP` 作为连接属性列。
 
 ## 特殊情况
 
