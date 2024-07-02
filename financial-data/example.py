@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Define file path and sheet name
-file_path = 'https://github.com/18986351898/data-sharing/raw/Financial-data/Financial-data/Finacial-data.xlsx'
+file_path = 'https://github.com/wri-china/data-sharing/blob/main/financial-data/financial-data.xlsx'
 sheet_name = 'sheet1'
 
 # Read data from the Excel file
