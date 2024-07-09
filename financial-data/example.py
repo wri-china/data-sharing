@@ -54,7 +54,8 @@ print(data)
 
 # Set font to display Chinese characters
 plt.rcParams['font.sans-serif'] = ['SimHei']  # Set font to SimHei
-plt.rcParams['axes.unicode_minus'] = False   # Solve the negative sign display issue in the coordinate axis
+# Solve the negative sign display issue in the coordinate axis
+plt.rcParams['axes.unicode_minus'] = False
 
 # Create a bar chart
 fig, ax = plt.subplots(figsize=(12, 8))
@@ -66,7 +67,8 @@ ax.bar(x, [data[province][1] for province in provinces], width, label='节能环
 
 # Add percentage labels on the bar chart
 for i, p in enumerate(data.values()):
-    ax.text(i, p[1] + 50000, f'{p[2]}%', ha='center', va='bottom', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round'))
+    ax.text(i, p[1] + 50000, f'{p[2]}%', ha='center', va='bottom',
+            bbox=dict(facecolor='white', edgecolor='black', boxstyle='round'))
 
 ax.set_xticks([x_i for x_i in x])
 ax.set_xticklabels(provinces, rotation=45)
@@ -80,9 +82,8 @@ ax.yaxis.set_major_formatter(formatter)
 # Add legend
 legend_items = ['节能环保支出', '节能环保支出占一般公共支出的百分比']
 legend_colors = ['blue', 'w']  # Set the second rectangle to white fill
-legend_boxes = [
-    plt.Rectangle((0, 0), 1, 1, fc=color, ec='black') for color in legend_colors
-]
-ax.legend(legend_boxes, legend_items, loc='upper right', bbox_to_anchor=(0.95, 0.95))
+legend_boxes = [plt.Rectangle((0, 0), 1, 1, fc=color, ec='black') for color in legend_colors]
+ax.legend(legend_boxes, legend_items, loc='upper right',
+          bbox_to_anchor=(0.95, 0.95))
 
 plt.show()
