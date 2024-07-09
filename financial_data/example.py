@@ -33,7 +33,7 @@ for province in provinces:
     condition1 = df[
         (df['省份'] == province) &
         df['合并列'].str.contains('一般公共支出') &
-        df['合并列'].str.contains('总合计')
+        df['合并列'].str.endwith('总合计')
     ]
 
     # Extract 2024 budget figure for the first condition
