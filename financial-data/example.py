@@ -8,9 +8,6 @@ sheet_name = 'sheet1'
 # Read data from the Excel file
 df = pd.read_excel(file_path, sheet_name=sheet_name, engine='openpyxl')
 
-# Merge columns B, C, D, E
-df['合并列'] = df[['表名称', '项目一级', '项目二级', '项目三级']].fillna('').agg(''.join, axis=1)
-
 # Iterate over each province
 provinces = ['北京市', '广东省', '河北省', '江苏省', '山东省', '上海市', '四川省', '天津市', '浙江省']
 
@@ -18,23 +15,42 @@ provinces = ['北京市', '广东省', '河北省', '江苏省', '山东省', '�
 data = {}
 
 for province in provinces:
-    # Filter second condition: "General public expenditure", "Energy conservation and environmental protection expenditure", "Total"
-    condition2 = df[
-        (df['省份'] == province) &
-        df['合并列'].str.contains('一般公共支出') &
-        df['合并列'].str.contains('节能环保支出') &
-        df['合并列'].str.contains('合计')
-    ]
+    if province == '广东省':
+        # Special handling for Guangdong province
+        condition1 = df[
+            (df['省份'] == '广东省') &
+            df['表名称'].str.contains('一般公共支出') &
+            df['项目二级'].str.contains('合计')
+        ]
+        
+        condition2 = df[
+            (df['省份'] == '广东省') &
+            df['表名称'].str.contains('一般公共支出') &
+            df['项目二级'].str.contains('节能环保支出') &
+            df['项目三级'].str.contains('合计')
+        ]
+
+
+    else:
+         # Filter first condition: "General public expenditure", "Total"
+        condition1 = df[
+            (df['省份'] == province) &
+            df['表名称'].str.contains('一般公共支出') &
+            df['项目一级'].str.endswith('总合计')
+        ]
+
+        
+        # Filter second condition: "General public expenditure", "Energy conservation and environmental protection expenditure", "Total"
+        condition2 = df[
+            (df['省份'] == province) &
+            df['表名称'].str.contains('一般公共支出') &
+            df['项目一级'].str.contains('节能环保支出') &
+            df['项目二级'].str.contains('合计')
+        ]
+
 
     # Extract 2024 budget figure for the second condition
     row2_value = condition2['2024年计划数'].values[0] if not condition2.empty else 0
-
-    # Filter first condition: "General public expenditure", "Total"
-    condition1 = df[
-        (df['省份'] == province) &
-        df['合并列'].str.contains('一般公共支出') &
-        df['合并列'].str.endswith('总合计')
-    ]
 
     # Extract 2024 budget figure for the first condition
     row1_value = condition1['2024年计划数'].values[0] if not condition1.empty else 0
