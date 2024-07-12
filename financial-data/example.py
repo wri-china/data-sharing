@@ -2,11 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Define file path and sheet name
-file_path = 'https://github.com/wri-china/data-sharing/blob/main/financial-data/financial-data.xlsx'
+file_path = 'https://raw.githubusercontent.com/wri-china/data-sharing/main/financial-data/financial-data.xlsx'
 sheet_name = 'sheet1'
 
 # Read data from the Excel file
-df = pd.read_excel(file_path, sheet_name=sheet_name)
+df = pd.read_excel(file_path, sheet_name=sheet_name, engine='openpyxl')
 
 # Merge columns B, C, D, E
 df['合并列'] = df[['表名称', '项目一级', '项目二级', '项目三级']].fillna('').agg(''.join, axis=1)
@@ -33,7 +33,7 @@ for province in provinces:
     condition1 = df[
         (df['省份'] == province) &
         df['合并列'].str.contains('一般公共支出') &
-        df['合并列'].str.endwith('总合计')
+        df['合并列'].str.endswith('总合计')
     ]
 
     # Extract 2024 budget figure for the first condition
