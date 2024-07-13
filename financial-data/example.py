@@ -7,55 +7,48 @@ sheet_name = 'sheet1'
 
 # Read data from the Excel file
 df = pd.read_excel(file_path, sheet_name=sheet_name, engine='openpyxl')
-
-# Define provinces
-provinces = ['北京市', '广东省', '河北省', '江苏省', '山东省', '上海市', '四川省', '天津市', '浙江省']
+# Subset dataframe
+sub_df = df[df['表名称'] == '一般公共支出']
 
 # Filter the dataframe for the relevant rows
-total_exp_df = df[
-    (df['表名称'].str.contains('一般公共支出')) &
-    (df['项目一级'].str.contains('总合计')) &
-    (df['项目二级'].isna())
+total_exp_df = sub_df[
+    (sub_df['项目一级'].str.contains('总合计')) &
+    (sub_df['项目二级'].isna())
 ]
 
-item_exp_df = df[
-    (df['表名称'].str.contains('一般公共支出')) &
-    (df['项目一级'].str.contains('节能环保支出')) &
-    (df['项目二级'].str.contains('合计'))
+item_exp_df = sub_df[
+    (sub_df['项目一级'].str.contains('节能环保支出')) &
+    (sub_df['项目二级'].str.contains('合计'))
 ]
 
 # Special handling for Guangdong province
-total_exp_guangdong = df[
-    (df['省份'] == '广东省') &
-    (df['表名称'].str.contains('一般公共支出')) &
-    (df['项目一级'].str.contains('一般公共预算支出')) &
-    (df['项目二级'].str.contains('合计')) &
-    (df['项目三级'].isna())
+total_exp_guangdong = sub_df[
+    (sub_df['省份'] == '广东省') &
+    (sub_df['项目一级'].str.contains('一般公共预算支出')) &
+    (sub_df['项目二级'].str.contains('合计')) &
+    (sub_df['项目三级'].isna())
 ]
 
-item_exp_guangdong = df[
-    (df['省份'] == '广东省') &
-    (df['表名称'].str.contains('一般公共支出')) &
-    (df['项目二级'].str.contains('节能环保支出')) &
-    (df['项目三级'].str.contains('合计'))
+item_exp_guangdong = sub_df[
+    (sub_df['省份'] == '广东省') &
+    (sub_df['项目二级'].str.contains('节能环保支出')) &
+    (sub_df['项目三级'].str.contains('合计'))
 ]
 
 # Merge the special handling rows with the main conditions
-total_exp_df = pd.concat([total_exp_df, total_exp_guangdong])
-item_exp_df = pd.concat([item_exp_df, item_exp_guangdong])
+total_exp_df = pd.concat([total_exp_df, total_exp_guangdong]).reset_index(drop=True)
+item_exp_df = pd.concat([item_exp_df, item_exp_guangdong]).reset_index(drop=True)
 
-# Initialize a DataFrame to store data
-data = pd.DataFrame(columns=['省份', '总支出', '节能环保支出', '百分比'])
+# Merge the DataFrames on '省份'
+merged_df = pd.merge(total_exp_df, item_exp_df, on='省份', suffixes=('_总支出', '_节能环保支出'))
+# Calculate the percentage
+merged_df['百分比'] = merged_df['2024年计划数_节能环保支出'] / merged_df['2024年计划数_总支出'] * 100
+# Select relevant columns and rename for clarity
+data = merged_df[['省份', '2024年计划数_总支出', '2024年计划数_节能环保支出', '百分比']]
+data.columns = ['省份', '总支出', '节能环保支出', '百分比']
 
-data['省份'] = total_exp_df['省份'].values
-data['总支出'] = total_exp_df['2024年计划数'].values
-data['节能环保支出'] = item_exp_df['2024年计划数'].values
-data['百分比'] = data['节能环保支出'] / data['总支出'] * 100
 
-# Output the calculated raw data
-print("Calculated Raw Data:")
-print(data)
-
+# Visualization
 # Set font to display Chinese characters
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
