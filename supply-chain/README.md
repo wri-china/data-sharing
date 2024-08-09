@@ -1,23 +1,33 @@
 ## Import/Export Critical Materials Visualization using Plotly
-This Jupyter Notebook provides code and data for visulizing the flow of Import/Export Critical Materials with Sankey diagrams. Sankey diagrams are effective tools for visualizing the flow of data, resources, or energy between different stages or nodes. This project is written under python 3.9 environment.
+This project provides a set of tools for visualizing [global trade data](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv) related to critical materials using Plotly. The dataset includes yearly import and export information at the level of year, exporter, importer, and product. The visualizations produced include interactive tree diagrams and Sankey diagrams, which effectively represent trade flows at multiple levels.
 
-## Prerequisites
-Before running, ensure you have the following packages installed:
+### Detailed Trade Data: 
 
-plotly
-numpy
-pandas
-matplotlib (for pylab functionality)
+Products are categorized using the Harmonized System 6-digit nomenclature, with values reported in thousand USD and quantities in metric tons.
+### Comprehensive Coverage: 
+
+Trade flows are detailed at the year - exporter - importer - product level, providing a granular view of global trade patterns.
+
+## Global Trade Dataset Information
+
+t: year
+i: exporter
+j: importer
+k: product
+v: value
+q: quantity
 
 
-## Input Data Structure
-See the DATA file for details. 
-The difference between the data from 2017 and 2022 lies in the product codes. There are 145 product codes that only appear in the 2017 product codes file, and 370 product codes that only appear in the 2022 product codes file.
+## Country Data Integration
+
+After importing the main trade dataset, it is connected with a [country codes dataset](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/country_codes_V202401.csv) to replace numeric country codes with corresponding country names. The country code dataset contains information for 238 countries, ensuring broad coverage. 
+
+## Product Data Integration
+
+The trade dataset is also linked with a [product codes dataset](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/product_codes_HS22_V202401.csv) to categorize the products involved. The product code dataset has two versions (2017 and 2022). The 2017 version includes 145 unique product codes, while the 2022 version includes 370 unique codes. This integration allows for detailed product categorization based on the latest available data. 
 
 ## Usage
 ### To use this notebook:
-Open the notebook in Jupyter Notebook or JupyterLab.
-Ensure you have the necessary data files and libraries installed.
 Using Example section as an Example to input your data. 
 
 There are five functions to create sankey and tree diagrams. 
@@ -31,8 +41,3 @@ export_tree_diagram_preprocess(n3s,all_data_code,country_code,product_code,new_t
 export_sankey_diagram(n3s,all_data_code,country_code,product_code,new_trio,target_country_name)
     This function draws a Sankey diagram to visualiz the export OD of n3s
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Reference
-Gaulier, G. and Zignago, S. (2010). BACI: International Trade Database at the Product-Level. The 1994-2007 Version. CEPII Working Paper, N°2010-23.
