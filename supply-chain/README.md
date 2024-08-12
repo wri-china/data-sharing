@@ -1,17 +1,18 @@
-## Global Trade Dataset
-[Global Trade Dataset](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37)includes yearly import and export information at the level of year, exporter, importer, and product. Country codes dataset is a list contains numeric country codes and corresponding country names. The country code dataset contains information for 238 countries.Product codes dataset contains a list of product codes that categorize the products involved. The product code has two versions (2017 and 2022). The 2017 version includes 145 unique product codes, while the 2022 version includes 370 unique codes. This integration allows for detailed product categorization based on the latest available data. 
+# The International Trade Dataset Overview
+[The International Trade Dataset](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) provides yearly global trade products at a detailed level, including year, exporter, importer, product, value, and quantity. this dataset contains two versions: BACI_HS17_V2020401 and BACI_HS22_V2020401:
+As for BACI_HS17_V2020401, it contains the trade dataset from 2017 to 2022.
+As for BACI_HS22_V2020401, it contains the trade dataset in 2022.
 
-### Global Trade Dataset Information
-Within the Global trade data there are several impoter:
-t: year
-i: exporter
-j: importer
-k: product
-v: value
-q: quantity
+Difference: The 2017 version includes 145 unique product codes, while the 2022 version includes 370 unique codes. This integration allows for detailed product categorization based on the latest available data. 
 
+In each folder, it contains 4 types of files: BACI_HS{xx}_Y{YEAR}_V202401.csv, country_codes_V2024.csv, product_codes_HS{xx}_V202401.csv and Readme.txt
 
-### Case for Supplychain
+'BACI_HS{xx}_Y{YEAR}_V202401.csv' represents the dataset itself. 'xx' is the dataset's version, 'YEAR' is the dataset's year. 
+'country_codes_V2024.csv' represents the corresponding country of exporter and importer country.
+'product_codes_HS{xx}_V202401.csv' represents the detailed product and its corresponding 6-digit nomenclature in Harmonized System
+'Readme.txt' gives detailed information about the dataset.
+
+# Case for Supplychain
 
 Wihtin this notebook it visualized China's new trio supplychain with interactive tree diagrams and Sankey diagrams, which effectively represent trade flows at multiple levels.
 
@@ -38,7 +39,7 @@ import_tree_diagram(CriticalMaterials,all_data_code,country_code,product_code,ta
 import_sankey_diagram(CriticalMaterials, all_data_code, country_code, product_code, target_country_name)
         This function draws a Sankey diagram to visualiz the import OD of Critical Materials.
 
-### Datasets Download Link
+## Datasets Download Link
 
 Global Trade Dataset:
 https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv
