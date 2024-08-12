@@ -27,8 +27,7 @@ This dataset is available in two versions:
 - **Country codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/country_codes_V202401.csv)
 - **Product codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/product_codes_HS22_V202401.csv)
 
-#### Difference:
-The 2017 version includes 145 unique product codes, while the 2022 version includes 370 unique codes. This integration allows for more detailed product categorization based on the latest available data.
+##### Difference: The 2017 version includes 145 unique product codes, while the 2022 version includes 370 unique codes. This integration allows for more detailed product categorization based on the latest available data.
 
 ### File Structure
 
