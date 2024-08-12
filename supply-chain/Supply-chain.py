@@ -1,11 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ## Packeges
-
-# In[11]:
-
-
 import numpy as np
 import plotly.express as px
 #import requests
@@ -13,10 +5,6 @@ import pandas as pd
 import pylab as plt
 import plotly.graph_objects as go   
 
-
-# ##  Functions 
-
-# In[13]:
 
 
 #Function Input: Critical Materical want to track，data，Target import country，product code
@@ -42,8 +30,6 @@ def get_importer_value(CM,all_data_code,country_code,product_code,target_country
     return sizes,labels,p_des
 
 
-# In[14]:
-
 
 #Simmilar with previous function but get exporter value 
 def get_exporter_value(n3,all_data_code,country_code,product_code,target_country_name):
@@ -68,9 +54,6 @@ def get_exporter_value(n3,all_data_code,country_code,product_code,target_country
     return sizes,labels,p_des
 
 
-# In[15]:
-
-
 def get_exporter_value_list(n3list,all_data_code,country_code,product_code,target_country_name):
     
     filtered_product = product_code[product_code['description'].isin(n3list)]
@@ -93,10 +76,6 @@ def get_exporter_value_list(n3list,all_data_code,country_code,product_code,targe
     return sizes,labels,p_des
 
 
-# ### Full Tree diagram
-
-# In[90]:
-
 
 def all_data_diagram(n3list,all_data_code,country_code,product_code,target_country_name):
     sizes,labels,p_des = get_exporter_value_list(n3list,all_data_code,country_code,product_code,target_country_name)
@@ -118,8 +97,6 @@ def all_data_diagram(n3list,all_data_code,country_code,product_code,target_count
 
 # ### Export Tree diagram 
 
-# In[45]:
-
 
 def export_tree_diagram_preprocess(n3s,all_data_code,country_code,product_code,new_trio,target_country_name):
     DFot = pd.DataFrame()
@@ -130,9 +107,6 @@ def export_tree_diagram_preprocess(n3s,all_data_code,country_code,product_code,n
         df_Export_from_china['new_trio_type'] = new_trio[i]
         DFot = pd.concat([DFot,df_Export_from_china],axis = 0)
     return DFot,sizes,labels
-
-
-# In[44]:
 
 
 def export_tree_diagram(n3s,all_data_code,country_code,product_code,new_trio,target_country_name):
@@ -156,9 +130,6 @@ def export_tree_diagram(n3s,all_data_code,country_code,product_code,new_trio,tar
 
 
 # ### Export Sankey diagram
-
-# In[51]:
-
 
 def export_sankey_diagram(n3s,all_data_code,country_code,product_code,new_trio,target_country_name):
     Df_export_from_china = export_tree_diagram_preprocess(n3s,all_data_code,country_code,product_code,new_trio,target_country_name)[0]
@@ -214,9 +185,6 @@ def export_sankey_diagram(n3s,all_data_code,country_code,product_code,new_trio,t
 
 # ### Import diagram
 
-# In[59]:
-
-
 def import_tree_diagram(CriticalMaterials,all_data_code,country_code,product_code,target_country_name):
     DF_import = pd.DataFrame()
 
@@ -238,10 +206,6 @@ def import_tree_diagram(CriticalMaterials,all_data_code,country_code,product_cod
         fig.show()
         fig.write_html(f"The Proportion of {CM.capitalize()} Related Materials Imports from Countries to {target_country_name}.html")
     #return DF_import
-
-
-# In[82]:
-
 
 def import_sankey_diagram(CriticalMaterials, all_data_code, country_code, product_code, target_country_name):
     DF_import = pd.DataFrame()  # Initialize the DataFrame
@@ -313,9 +277,6 @@ def import_sankey_diagram(CriticalMaterials, all_data_code, country_code, produc
 
 # ## Example
 
-# In[89]:
-
-
 #Define Critical Matericals
 CriticalMaterials  = ['copper', 'lithium', 'nickel', 'cobalt']
 #Define dictionary to translate data columns
@@ -328,11 +289,11 @@ data_dict = {
     "q": "quantity"
 }
 
-##Define data file path
-dirfolder = 'C:\\Users\\WIN11\\Desktop\\intern\\WRI\\Export_Visuilization\\'
-dirp = dirfolder + 'BACI_HS22_V202401/product_codes_HS22_V202401.csv'
-dirc = dirfolder + 'BACI_HS22_V202401/country_codes_V202401.csv'
-dird = dirfolder + 'BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv'
+# Data Imput
+product_code = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/product_codes_HS22_V202401.csv')
+country_code  = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/country_codes_V202401.csv')
+all_data_code = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv').rename(columns=data_dict)
+
 
 ##Define target country
 target_country_name = 'China'
@@ -349,50 +310,16 @@ n3list = ['Electric generators: photovoltaic DC generators, of an output not exc
  'Electrical apparatus: photosensitive semiconductor devices, diodes other than light emitting diodes and photovoltaic cells whether or not assembled in modules or made up into panels',
  ]
 
-#Data process
-product_code = pd.read_csv(dirp)
-product_code.set_index('code',inplace = True)
 
-country_code = pd.read_csv(dirc)
-country_code.set_index('country_code',inplace = True)
-
-all_data_code = pd.read_csv(dird).rename(columns=data_dict)
-
-
-# ##  Create Diagram
-
-# In[48]:
-
+###  Create Diagram
 
 all_data_diagram(n3list,all_data_code,country_code,product_code,target_country_name)
 
-
-# In[26]:
-
-
 export_tree_diagram(n3s,all_data_code,country_code,product_code,new_trio,target_country_name)
-
-
-# In[84]:
-
 
 export_sankey_diagram(n3s,all_data_code,country_code,product_code,new_trio,target_country_name)
 
-
-# In[86]:
-
-
 import_tree_diagram(CriticalMaterials,all_data_code,country_code,product_code,target_country_name)
 
-
-# In[88]:
-
-
 import_sankey_diagram(CriticalMaterials, all_data_code, country_code, product_code, target_country_name)
-
-
-# In[ ]:
-
-
-
 
