@@ -1,6 +1,6 @@
 # The International Trade Dataset Overview
 
-## International Trade Dataset
+## 1. International Trade Dataset
 
 The [International Trade Dataset](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) provides yearly global trade data at a detailed level, including:
 
@@ -48,14 +48,9 @@ Each folder contains four types of files:
 4. **`Readme.txt`**  
    This file provides detailed information about the dataset.
 
-## Supply Chain Case demonstration:  China's New Trio and CriticalMaterials Visualization
-
+## 2. Supply Chain Case demonstration:  China's New Trio and CriticalMaterials Visualization
 
 This script visualizes China's new trio supply chain using interactive tree diagrams and Sankey diagrams, which effectively represent trade flows at multiple levels. The target country, critical materials, and target products are defined within the Example section.
-
-### Functions Overview
-
-The notebook includes five functions designed to create and display Sankey and tree diagrams. Each function will display the corresponding diagram within the notebook and save it at the notebook's location. Before each diagram is shown, key information describing the diagram will be printed.
 
 ### 1. `all_data_diagram(n3list, all_data_code, country_code, product_code)`
 - **Description**: Draws a tree diagram for all new trio types.
