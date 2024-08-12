@@ -48,7 +48,7 @@ Each folder contains four types of files:
 4. **`Readme.txt`**  
    This file provides detailed information about the dataset.
 
-## 2. Supply Chain Case demonstration:  China's New Trio and CriticalMaterials Visualization
+## Supply Chain Case Demonstration:  China's New Trio and CriticalMaterials Visualization
 
 This script visualizes China's new trio supply chain using interactive tree diagrams and Sankey diagrams, which effectively represent trade flows at multiple levels. The target country, critical materials, and target products are defined within the Example section.
 
