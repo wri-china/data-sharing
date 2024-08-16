@@ -1,42 +1,64 @@
-## Import/Export Critical Materials Visualization using Plotly
-This project provides a set of tools for visualizing [global trade data](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv) related to critical materials using Plotly. The dataset includes yearly import and export information at the level of year, exporter, importer, and product. The visualizations produced include interactive tree diagrams and Sankey diagrams, which effectively represent trade flows at multiple levels.
+# The International Trade Dataset Overview
 
-### Detailed Trade Data: 
+## International Trade Dataset
 
-Products are categorized using the Harmonized System 6-digit nomenclature, with values reported in thousand USD and quantities in metric tons.
-### Comprehensive Coverage: 
+The [International Trade Dataset](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) provides yearly global trade data at a detailed level, including:
 
-Trade flows are detailed at the year - exporter - importer - product level, providing a granular view of global trade patterns.
+- **Year**
+- **Exporter**
+- **Importer**
+- **Product**
+- **Value**
+- **Quantity**
 
-## Global Trade Dataset Information
+### Dataset Versions
 
-t: year
-i: exporter
-j: importer
-k: product
-v: value
-q: quantity
+This dataset is available in two versions:
 
+#### 1. BACI_HS17_V2020401
+- **Time Period**: 2017 to 2022
+- **Product Source**: [2017](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2017_V202401.csv), [2018](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2018_V202401.csv), [2019](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2019_V202401.csv), [2020](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2020_V202401.csv), [2021](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2021_V202401.csv), [2022](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2022_V202401.csv)
+- **Country codes**: [HS17](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/country_codes_V202401.csv)
+- **Product codes**: [HS17](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/product_codes_HS17_V202401.csv)
 
-## Country Data Integration
+#### 2. BACI_HS22_V2020401
+- **Time Period**: 2022
+- **Product Source**: [2022](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv)
+- **Country codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/country_codes_V202401.csv)
+- **Product codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/product_codes_HS22_V202401.csv)
 
-After importing the main trade dataset, it is connected with a [country codes dataset](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/country_codes_V202401.csv) to replace numeric country codes with corresponding country names. The country code dataset contains information for 238 countries, ensuring broad coverage. 
+##### Difference: The 2017 version includes 145 unique product codes, while the 2022 version includes 370 unique codes. 2022 version have more subdivision from 2017 version which allows for more detailed product categorization based on the latest available data.
 
-## Product Data Integration
+### File Structure
 
-The trade dataset is also linked with a [product codes dataset](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/product_codes_HS22_V202401.csv) to categorize the products involved. The product code dataset has two versions (2017 and 2022). The 2017 version includes 145 unique product codes, while the 2022 version includes 370 unique codes. This integration allows for detailed product categorization based on the latest available data. 
+Each folder contains four types of files:
 
-## Usage
-### To use this notebook:
-Using Example section as an Example to input your data. 
+1. **`BACI_HS{xx}_Y{YEAR}_V202401.csv`**  
+   This file represents the dataset itself.  
+   - `{xx}` indicates the dataset's version.  
+   - `{YEAR}` indicates the dataset's year.
 
-There are five functions to create sankey and tree diagrams. 
-Each function will show the diagram within the notebook and save at the desktop. 
-There will also be a few lines of key information discribe the diagram print before the diagram. 
+2. **`country_codes_V2024.csv`**  
+   This file contains the corresponding country codes for the exporter and importer countries.
 
-all_data_diagram(n3list,all_data_code,country_code,product_code)
-    This function draws a tree diagram for all new trio type 
-export_tree_diagram_preprocess(n3s,all_data_code,country_code,product_code,new_trio,target_country_name):
-    This function draws tree diagrams for each new_trio elements
-export_sankey_diagram(n3s,all_data_code,country_code,product_code,new_trio,target_country_name)
-    This function draws a Sankey diagram to visualiz the export OD of n3s
+3. **`product_codes_HS{xx}_V202401.csv`**  
+   This file contains detailed product information along with its corresponding 6-digit nomenclature in the Harmonized System.
+
+4. **`Readme.txt`**  
+   This file provides detailed information about the dataset.
+
+## Supply Chain Case Demonstration:  China's New Trio and CriticalMaterials Visualization
+
+This script visualizes China's new trio and critical minerals supply chain using interactive tree diagrams and Sankey diagrams, which effectively represent trade flows at multiple levels.
+
+by simply running: 
+```shell
+python3 supply-chain.py
+```
+or running each cell of the `suppy-chain.ipynb`,
+
+user can get the interactive Tree diagrams and Sankey diagrams as followed:
+
+[View Sankey Diagram of Critical Materials Imports into China](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/Sankey+Diagram+of+Critical+Materials++Imports+into+China.html)
+
+[View Tree Diagram of Cabalt Imports into China](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/The+Proportion+of+Cobalt+Related+Materials+Imports+from+Countries+to+China.html)
