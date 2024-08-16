@@ -27,7 +27,11 @@ This dataset is available in two versions:
 - **Country codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/country_codes_V202401.csv)
 - **Product codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/product_codes_HS22_V202401.csv)
 
-##### Difference: The 2017 version includes 145 unique product codes, while the 2022 version includes 370 unique codes. 2022 version have more subdivision from 2017 version which allows for more detailed product categorization based on the latest available data.
+##### Difference: 
+- HS 2022 introduced significant structural changes compared to HS 2017. This includes the reclassification of certain products and the creation of new subheadings to accommodate new products and changes in global trade patterns.
+- Many subheadings in HS 2017 were merged, split, or expanded in HS 2022 to reflect the current state of international trade more accurately.
+- HS 2022 covers a broader range of products with more detailed classifications. This reflects technological advancements, the emergence of new products, and changes in consumer demand. For instance, HS 2022 includes new classifications for high-tech goods, environmental goods, and health-related products.
+- The number of unique product codes increased from 145 in HS 2017 to 370 in HS 2022, indicating more granular classification.
 
 ### File Structure
 
