@@ -59,7 +59,6 @@ or running each cell of the `suppy-chain.ipynb`,
 
 user can get the interactive Tree diagrams and Sankey diagrams as followed:
 
-
 [View Sankey Diagram of Critical Materials Imports into China](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/Sankey+Diagram+of+Critical+Materials++Imports+into+China.html)
 
-
+[View Tree Diagram of Cabalt Imports into China](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/The+Proportion+of+Cobalt+Related+Materials+Imports+from+Countries+to+China.html)
