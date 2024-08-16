@@ -59,6 +59,6 @@ or running each cell of the `suppy-chain.ipynb`,
 
 user can get the interactive Tree diagrams and Sankey diagrams as followed:
 
-  ![fugure1](/img/)
+  ![fugure1](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/Sankey+Diagram+of+Critical+Materials++Imports+into+China.html)
 
 
