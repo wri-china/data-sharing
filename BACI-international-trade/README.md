@@ -15,15 +15,15 @@ This dataset is available in two versions:
 
 ### 1. BACI_HS17_V2020401
 - **Time Period**: 2017 to 2022
-- **Product Source**: [2017](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2017_V202401.csv), [2018](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2018_V202401.csv), [2019](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2019_V202401.csv), [2020](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2020_V202401.csv), [2021](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2021_V202401.csv), [2022](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/BACI_HS17_Y2022_V202401.csv)
-- **Country codes**: [HS17](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/country_codes_V202401.csv)
-- **Product codes**: [HS17](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS17_V202401/product_codes_HS17_V202401.csv)
+- **Product Source**: [2017](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS17_V202401/BACI_HS17_Y2017_V202401.csv), [2018](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS17_V202401/BACI_HS17_Y2018_V202401.csv), [2019](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS17_V202401/BACI_HS17_Y2019_V202401.csv), [2020](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS17_V202401/BACI_HS17_Y2020_V202401.csv), [2021](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS17_V202401/BACI_HS17_Y2021_V202401.csv), [2022](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS17_V202401/BACI_HS17_Y2022_V202401.csv)
+- **Country codes**: [HS17](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS17_V202401/country_codes_V202401.csv)
+- **Product codes**: [HS17](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS17_V202401/product_codes_HS17_V202401.csv)
 
 ### 2. BACI_HS22_V2020401
 - **Time Period**: 2022
-- **Product Source**: [2022](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv)
-- **Country codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/country_codes_V202401.csv)
-- **Product codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/BACI_HS22_V202401/product_codes_HS22_V202401.csv)
+- **Product Source**: [2022](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv)
+- **Country codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS22_V202401/country_codes_V202401.csv)
+- **Product codes**: [HS22](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS22_V202401/product_codes_HS22_V202401.csv)
 
 #### Difference: 
 - HS 2022 introduced significant structural changes compared to HS 2017. This includes the reclassification of certain products and the creation of new subheadings to accommodate new products and changes in global trade patterns.
@@ -52,5 +52,5 @@ This script visualizes China's new trio and critical minerals supply chain using
 
 By running `python3 example.py` or each cell of the `example.ipynb`, user can get the interactive Sankey diagram and Tree diagram as followed:
 
-- View [Sankey diagram](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/Sankey+Diagram+of+Critical+Materials++Imports+into+China.html) of Critical Materials Imports into China
-- View [Tree diagram](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/supply_chain/The+Proportion+of+Cobalt+Related+Materials+Imports+from+Countries+to+China.html) of Cabalt Imports into China
+- View [Sankey diagram](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/Sankey+Diagram+of+Critical+Materials++Imports+into+China.html) of Critical Materials Imports into China
+- View [Tree diagram](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/The+Proportion+of+Cobalt+Related+Materials+Imports+from+Countries+to+China.html) of Cabalt Imports into China
