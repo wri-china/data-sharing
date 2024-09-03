@@ -290,9 +290,9 @@ data_dict = {
 }
 
 # Data Imput
-product_code = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/product_codes_HS22_V202401.csv')
-country_code  = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/country_codes_V202401.csv')
-all_data_code = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/Supply_Chain/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv').rename(columns=data_dict)
+product_code = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS22_V202401/product_codes_HS22_V202401.csv')
+country_code  = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS22_V202401/country_codes_V202401.csv')
+all_data_code = pd.read_csv('https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/BACI_international_trade/BACI_HS22_V202401/BACI_HS22_Y2022_V202401.csv').rename(columns=data_dict)
 
 
 ##Define target country
