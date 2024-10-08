@@ -1,17 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Sep 27 17:57:24 2024
-
-@author: Yuchen.Guo
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 15 12:25:56 2024
-
-@author: Yuchen.Guo
-"""
-
 import geopandas as gpd
 from tqdm import tqdm
 import os
@@ -20,15 +6,14 @@ import rioxarray as rxr
 from rasterio.features import rasterize
 import rasterio
 
+
 def buffer_geometry(geom, distance=1000, resolution=20):
-    #### Set your buffer distance
-    
+    # Set buffer distance and resolution
     try:
         return geom.buffer(distance, resolution)
     except:
         return geom.buffer(0)
-    
-    
+
 
 def rasterize_geodataframe(final_gdf, reference_raster, output_raster_path, crs):
     """
@@ -45,7 +30,7 @@ def rasterize_geodataframe(final_gdf, reference_raster, output_raster_path, crs)
     """
     # Load the reference raster
     refer_raster = rxr.open_rasterio(reference_raster)
-    
+
     # Extract raster properties from the reference raster
     transform = refer_raster.rio.transform()
     out_shape = refer_raster.shape[1:]  # (height, width)
@@ -72,45 +57,41 @@ def rasterize_geodataframe(final_gdf, reference_raster, output_raster_path, crs)
 
     # Save the rasterized GeoDataFrame to a new TIFF file
     with rasterio.open(output_raster_path, 'w', **out_meta) as dest:
-        dest.write(out_image, 1)    
+        dest.write(out_image, 1)
 
 
-
-
-def get_final_buffer(gridgpd_op_best_utm,crs,dirout,filename,dis = 1000):
-    if os.path.exists(os.path.join(dirout,filename.replace('.shp',f'_buffer_{dis}m.geojson'))):
-        final = gpd.read_file(os.path.join(dirout,filename.replace('.shp',f'_buffer_{dis}m.geojson')))
+def get_final_buffer(gridgpd_op_best_utm, crs, out_dir, filename, dis=1000):
+    if os.path.exists(os.path.join(out_dir, filename.replace('.gpkg', f'_buffer_{dis}m.geojson'))):
+        final = gpd.read_file(os.path.join(out_dir, filename.replace('.gpkg', f'_buffer_{dis}m.geojson')))
     else:
         gridgpd_op_reproj = gridgpd_op_best_utm.copy()
         tqdm.pandas(desc="Buffering geometries")
         gridgpd_op_reproj['geometry'] = gridgpd_op_reproj['geometry'].progress_apply(lambda geom: buffer_geometry(geom, distance=dis))
         final = gridgpd_op_reproj.to_crs(crs)
-        #final.to_file(os.path.join(dirout,filename.replace('.gpkg',f'_buffer_{dis}m.geojson')))
-        final.to_file(os.path.join(dirout,filename.replace('.shp',f'_buffer_{dis}m.geojson')))
+        final.to_file(os.path.join(out_dir, filename.replace('.gpkg', f'_buffer_{dis}m.geojson')))
     return final
 
 
-dis = 1000  # Set your buffer distance
-crs = "EPSG:4326" # set crs
+# Set buffer distance
+dis = 1000
+# Set CRS
+crs = "EPSG:4326"
 
-## Replace your output folder
-dirout = 'E:/SPAM/grid_available/'
-rasterout = os.path.join(dirout, f'grid_{dis}m_raster_gf.tif')
-
-## Replace your target folder of reference raster grid
-referdir = r'E:/SPAM/calibration_crop_phy/'
-reference_raster = os.path.join(referdir,'Finalcrop_China + Southeast Asia_BANA_2020_physical_area_ha_2020_0.00925926.tif')
-
-## Replace your grid dataset
-dirin = r'C:/Users/Yuchen.Guo/OneDrive - World Resources Institute/Desktop/wordbank/gadm404-shp/'
+# Replace input grid dataset
+in_dir = 'input/folder'
 filename = "grid_china_southasian_gf.gpkg"
-
+gridgpd_op = gpd.read_file(os.path.join(in_dir, filename))
 # To best crs
-gridgpd_op = gpd.read_file(os.path.join(dirin,filename))
 gridgpd_op_best_utm = gridgpd_op.to_crs(gridgpd_op.estimate_utm_crs())
 
-## vec to raster
-final = get_final_buffer(gridgpd_op_best_utm,crs,dirout,filename,dis = dis)   
-rasterize_geodataframe(final, reference_raster, rasterout, crs)
+# Replace reference raster dataset
+refer_dir = 'reference_data/folder'
+reference_raster = os.path.join(refer_dir, 'China_Southeast_Asia_BANA_2020.tif')
 
+# Replace output raster folder and file
+out_dir = 'output/folder'
+raster_output = os.path.join(out_dir, f'China_Southeast_Asia_grid_{dis}m_raster_gf.tif')
 
+# vector to raster
+final = get_final_buffer(gridgpd_op_best_utm, crs, out_dir, filename, dis=dis)
+rasterize_geodataframe(final, reference_raster, raster_output, crs)
