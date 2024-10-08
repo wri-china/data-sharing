@@ -8,3 +8,5 @@ This dataset focuses on creating a medium-voltage grid dataset with a 1000m buff
 - **reference_dataset**: This folder contains reference datasets used in the generation of the grid. A key file is [China_Southeast_Asia_BANA_2020.tif](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/power_grid_dataset/reference_dataset/China_Southeast_Asia_BANA_2020.tif), which represents a crop dataset across China and Southeast Asia.
 
 - **China_Southeast_Asia_grid_1000m_raster_gf.tif**: The final output raster dataset represents the medium-voltage grid with a 1000m buffer in China and Southeast Asia.
+
+##### * Please contact the WRI China Data team if you need raw data for global power grids
