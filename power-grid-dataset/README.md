@@ -1,6 +1,6 @@
 #  Power Grid Dataset
 
-This dataset focuses on creating a medium-voltage grid dataset with a 1000m buffer in China and Southeast Asia, stored in the [China_Southeast_Asia_grid_1000m_raster_gf.tif](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/power_grid_dataset/output/China_Southeast_Asia_grid_1000m_raster_gf.tif) file. The script [power_grid_to_raster.py](power-grid-dataset/power_grid_to_raster.py) outlines the steps to process the vectorized grid network and the referenced crop dataset, providing a spatial representation of predicted and existing power grids.
+This dataset focuses on creating a medium-voltage grid dataset with a 1000m buffer in China and Southeast Asia, stored in the [China_Southeast_Asia_grid_1000m_raster_gf.tif](https://china-data-team-bucket-public.s3.cn-northwest-1.amazonaws.com.cn/power_grid_dataset/output/China_Southeast_Asia_grid_1000m_raster_gf.tif) file. The script [power_grid_to_raster.py](power_grid_to_raster.py) outlines the steps to process the vectorized grid network and the referenced crop dataset, providing a spatial representation of predicted and existing power grids.
 
 ### Files and Datasets
 - **grid.gpkg**: Vectorized dataset predicting the distribution of the transmission line network, including existing Open Street Map transmission lines tagged under the 'source' column. The source of the data is from [Gridfinder](https://gridfinder.rdrn.me/), the column `gf` represents medium-voltage.
